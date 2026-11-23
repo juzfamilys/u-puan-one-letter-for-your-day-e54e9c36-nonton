@@ -28,6 +28,12 @@ def validate(letter):
 
 def main():
     validate(LETTER)
+    # Consistency check: the letter must be the initial of the hidden word.
+    if LETTER != WORD[0].upper():
+        raise ValueError(
+            "letter %r does not match the initial of hidden word %r"
+            % (LETTER, WORD)
+        )
     output_dir = Path(os.environ.get("MAKEFUN_OUTPUT_DIR", "/output"))
     output_dir.mkdir(parents=True, exist_ok=True)
     entry_path = output_dir / "entry.txt"
